@@ -1,0 +1,14 @@
+start
+(e) init game model
+|
+menu <------------------------------
+(e) init game round
+- options
+|
+game
+(l) put score into model
+|
+highscore
+-menu ---------------------------->
+|
+end

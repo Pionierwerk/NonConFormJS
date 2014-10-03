@@ -1,0 +1,650 @@
+{
+    "project": {},
+    "files": {
+        "src/ncf.js": {
+            "name": "src/ncf.js",
+            "modules": {
+                "NonConForm Base": 1
+            },
+            "classes": {
+                "Ncf": 1,
+                "NcfState": 1,
+                "NcfTransition": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "NonConForm Base": {
+            "name": "NonConForm Base",
+            "submodules": {},
+            "classes": {
+                "Ncf": 1,
+                "NcfState": 1,
+                "NcfTransition": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "src/ncf.js",
+            "line": 521
+        }
+    },
+    "classes": {
+        "Ncf": {
+            "name": "Ncf",
+            "shortname": "Ncf",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "NonConForm Base",
+            "namespace": "",
+            "file": "src/ncf.js",
+            "line": 9,
+            "description": "Implements a State Engine and a Main Loop",
+            "static": 1
+        },
+        "NcfState": {
+            "name": "NcfState",
+            "shortname": "NcfState",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "NonConForm Base",
+            "namespace": "",
+            "file": "src/ncf.js",
+            "line": 307,
+            "description": "A state inside the state engine.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "name",
+                    "description": "Set the name of the new state",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\nvar stGame = new NcfState(\"Game\");<br/>\nvar tFinishFromGame = new NcfTransition(\"FinishFromGame\",\"End\",function() {});<br/>\nstGame.addTransition(tFinishFromGame);<br/>\nNcf.addState(stGame);<br/>"
+            ]
+        },
+        "NcfTransition": {
+            "name": "NcfTransition",
+            "shortname": "NcfTransition",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "NonConForm Base",
+            "namespace": "",
+            "file": "src/ncf.js",
+            "line": 521,
+            "description": "A transition inside the state engine.",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "name",
+                    "description": "Set the name of the new transition",
+                    "type": "String"
+                },
+                {
+                    "name": "name",
+                    "description": "of the destination state",
+                    "type": "String"
+                },
+                {
+                    "name": "funct",
+                    "description": "The function that will be called when the transition is triggered",
+                    "type": "Function"
+                }
+            ],
+            "example": [
+                "\nvar stGame = new NcfState(\"Game\");<br/>\nvar tFinishFromGame = new NcfTransition(\"FinishFromGame\",\"End\",function() {});<br/>\nstGame.addTransition(tFinishFromGame);<br/>"
+            ]
+        }
+    },
+    "classitems": [
+        {
+            "file": "src/ncf.js",
+            "line": 16,
+            "description": "The interval ID that is necessary to start the javascript main loop.",
+            "itemtype": "property",
+            "name": "intervalID",
+            "access": "private",
+            "tagname": "",
+            "type": "{int}",
+            "class": "Ncf",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 26,
+            "description": "the frames per seconf of the main loop",
+            "itemtype": "property",
+            "name": "fps",
+            "access": "private",
+            "tagname": "",
+            "static": 1,
+            "type": "{int}",
+            "class": "Ncf",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 37,
+            "description": "the controller function to process inside the main loop. This is the controller function of the actual state.",
+            "itemtype": "property",
+            "name": "controller",
+            "access": "private",
+            "tagname": "",
+            "static": 1,
+            "type": "{function}",
+            "class": "Ncf",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 48,
+            "description": "the view function to process inside the main loop. This is the view function of the actual state.",
+            "itemtype": "property",
+            "name": "view",
+            "access": "private",
+            "tagname": "",
+            "static": 1,
+            "type": "{function}",
+            "class": "Ncf",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 59,
+            "description": "The states.",
+            "itemtype": "property",
+            "name": "states",
+            "access": "private",
+            "tagname": "",
+            "static": 1,
+            "type": "{Hashtable}",
+            "class": "Ncf",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 70,
+            "description": "The actual state.",
+            "itemtype": "property",
+            "name": "actualstate",
+            "access": "private",
+            "tagname": "",
+            "static": 1,
+            "type": "{NcfState}",
+            "class": "Ncf",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 81,
+            "description": "When the debugmode is true, debugmessages will be written to the javascript console.",
+            "example": [
+                "         \nNcf.setDebugMode(true);\nNcf.log(\"initialize NonConForm\");"
+            ],
+            "itemtype": "property",
+            "name": "debugmode",
+            "access": "private",
+            "tagname": "",
+            "static": 1,
+            "type": "{boolean}",
+            "class": "Ncf",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 95,
+            "itemtype": "method",
+            "name": "init",
+            "static": 1,
+            "params": [
+                {
+                    "name": "fps",
+                    "description": "Frames Per Second of the Main Loop.",
+                    "type": "Int"
+                },
+                {
+                    "name": "firststatename",
+                    "description": "Name of the first stage. The out of the box \"Start\" state will go to this first state.",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\n-------------------------------------------------<br/>\ndeclare states<br/>\n-------------------------------------------------<br/>\nvar stGame = new NcfState(\"Game\");<br/>\nvar tFinishFromGame = new NcfTransition(\"FinishFromGame\",\"End\",function() {});<br/>\nstGame.addTransition(tFinishFromGame);<br/>\nNcf.addState(stGame);<br/>\n<br/>\n-------------------------------------------------<br/>\ndefine view<br/>\n-------------------------------------------------<br/>\nNcf.getState(\"Game\").setView(<br/>\n  function() {<br/>\n      Ncf.log(\"View\");<br/>\n      Ncf.transit(\"FinishFromGame\");<br/>\n  }<br/>\n)<br/>\n-------------------------------------------------<br/>\ndefine controller<br/>\n-------------------------------------------------<br/>\nNcf.getState(\"Game\").setController(<br/>\n  function() {<br/>\n      Ncf.log(\"Controller\");<br/>\n      Ncf.transit(\"FinishFromGame\");<br/>\n  }<br/>\n)<br/>\n-------------------------------------------------<br/>\nstart engine<br/>\n-------------------------------------------------<br/>\nNcf.setDebugMode(true);<br/>\nNcf.init(50,\"Game\");<br/>\t"
+            ],
+            "class": "Ncf",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 167,
+            "description": "Exit the NonConForm State Engine",
+            "itemtype": "method",
+            "name": "exit",
+            "static": 1,
+            "class": "Ncf",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 180,
+            "description": "Add a State to the list of states",
+            "itemtype": "method",
+            "name": "addState",
+            "static": 1,
+            "params": [
+                {
+                    "name": "state",
+                    "description": "The new state that is added to the list of states",
+                    "type": "NcfState"
+                }
+            ],
+            "class": "Ncf",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 193,
+            "description": "Get a state from the list of states",
+            "itemtype": "method",
+            "name": "getState",
+            "static": 1,
+            "params": [
+                {
+                    "name": "statename",
+                    "description": "the name of the state",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "the state",
+                "type": "NcfState"
+            },
+            "class": "Ncf",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 207,
+            "description": "Do a transition to given state",
+            "itemtype": "method",
+            "name": "transit",
+            "static": 1,
+            "params": [
+                {
+                    "name": "transitionname",
+                    "description": "the name of the new state",
+                    "type": "String"
+                }
+            ],
+            "class": "Ncf",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 240,
+            "description": "The main loop. First calls a controller function and then a viewing function. This loop is called by the framework.",
+            "itemtype": "method",
+            "name": "loop",
+            "static": 1,
+            "class": "Ncf",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 262,
+            "description": "starts the processing of the main loop",
+            "itemtype": "method",
+            "name": "start",
+            "static": 1,
+            "class": "Ncf",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 275,
+            "description": "Set the debugmode",
+            "itemtype": "method",
+            "name": "setDebugMode",
+            "static": 1,
+            "params": [
+                {
+                    "name": "mode",
+                    "description": "the new value (true | false)"
+                }
+            ],
+            "class": "Ncf",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 288,
+            "description": "Print a nessage to the console. If debugmode=true the message will be send to the javascript console.",
+            "itemtype": "method",
+            "name": "log",
+            "static": 1,
+            "params": [
+                {
+                    "name": "message",
+                    "description": "the message to print to the javascript console."
+                }
+            ],
+            "class": "Ncf",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 325,
+            "description": "The list of transitions of a state",
+            "itemtype": "property",
+            "name": "transitions",
+            "access": "private",
+            "tagname": "",
+            "type": "{Hashtable}",
+            "class": "NcfState",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 335,
+            "description": "The name of the state",
+            "itemtype": "property",
+            "name": "name",
+            "access": "private",
+            "tagname": "",
+            "type": "{string}",
+            "class": "NcfState",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 345,
+            "description": "The function called when the state is entered",
+            "itemtype": "property",
+            "name": "enterfunction",
+            "access": "private",
+            "tagname": "",
+            "type": "{Function}",
+            "default": "writing a message into the javascript console",
+            "class": "NcfState",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 356,
+            "description": "The function called when the state transits to another state",
+            "itemtype": "property",
+            "name": "leavefunction",
+            "access": "private",
+            "tagname": "",
+            "type": "{Function}",
+            "default": "writing a message into the javascript console",
+            "class": "NcfState",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 367,
+            "description": "The function called when the controller function in the main loop is called",
+            "itemtype": "property",
+            "name": "controllerfunction",
+            "access": "private",
+            "tagname": "",
+            "type": "{Function}",
+            "class": "NcfState",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 377,
+            "description": "The function called when the view function in the main loop is called",
+            "itemtype": "property",
+            "name": "viewfunction",
+            "access": "private",
+            "tagname": "",
+            "type": "{Function}",
+            "class": "NcfState",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 387,
+            "description": "Get the name of the state",
+            "itemtype": "method",
+            "name": "getName",
+            "return": {
+                "description": "the name of the state",
+                "type": "String"
+            },
+            "class": "NcfState",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 399,
+            "description": "Call the enter function. This will happen automaticaly when a transition to the state happenes",
+            "itemtype": "method",
+            "name": "enter",
+            "class": "NcfState",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 410,
+            "description": "Call the leave function. This will happen automaticaly when a transition away from the state happenes",
+            "itemtype": "method",
+            "name": "enter",
+            "class": "NcfState",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 421,
+            "description": "Add a transition to the state.",
+            "itemtype": "method",
+            "name": "addTransition",
+            "params": [
+                {
+                    "name": "transition",
+                    "description": "",
+                    "type": "NcfTransition"
+                }
+            ],
+            "class": "NcfState",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 433,
+            "description": "Return the transition of the state with the given transitionname",
+            "itemtype": "method",
+            "name": "getTransition",
+            "params": [
+                {
+                    "name": "transitionname",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "the transition",
+                "type": "NcfTransition"
+            },
+            "class": "NcfState",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 446,
+            "description": "Set the enter function. This function will be called automaticaly when a transition to the state happends",
+            "itemtype": "method",
+            "name": "setEnterFunction",
+            "params": [
+                {
+                    "name": "enterfunction",
+                    "description": "the enterfuncton",
+                    "type": "Function"
+                }
+            ],
+            "class": "NcfState",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 458,
+            "description": "Set the leave function. This function will be called automaticaly when a transition formthe state happends",
+            "itemtype": "method",
+            "name": "setLeaveFunction",
+            "params": [
+                {
+                    "name": "leavefunction",
+                    "description": "the leave function",
+                    "type": "Function"
+                }
+            ],
+            "class": "NcfState",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 470,
+            "description": "Set the controller function. This function will be called automaticaly during the main loop, its the controller of a state.",
+            "itemtype": "method",
+            "name": "setController",
+            "params": [
+                {
+                    "name": "controllerfunction",
+                    "description": "the controller function",
+                    "type": "Function"
+                }
+            ],
+            "class": "NcfState",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 482,
+            "description": "Set the view function. This function will be called automaticaly during the main loop, its the view of a state.",
+            "itemtype": "method",
+            "name": "setRunder",
+            "params": [
+                {
+                    "name": "viewfunction",
+                    "description": "the view function",
+                    "type": "Function"
+                }
+            ],
+            "class": "NcfState",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 494,
+            "description": "Return the controller function of the state",
+            "itemtype": "method",
+            "name": "getController",
+            "return": {
+                "description": "controllerfunction the controller function",
+                "type": "Function"
+            },
+            "class": "NcfState",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 506,
+            "description": "Return the view function of the state",
+            "itemtype": "method",
+            "name": "getView",
+            "return": {
+                "description": "viewfunction the view function",
+                "type": "Function"
+            },
+            "class": "NcfState",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 542,
+            "description": "The name of the transition",
+            "itemtype": "property",
+            "name": "name",
+            "access": "private",
+            "tagname": "",
+            "type": "{string}",
+            "class": "NcfTransition",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 552,
+            "description": "The name of the destination state",
+            "itemtype": "property",
+            "name": "destinationname",
+            "access": "private",
+            "tagname": "",
+            "type": "{string}",
+            "class": "NcfTransition",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 562,
+            "description": "The functinion that is called during the transition",
+            "itemtype": "property",
+            "name": "funct",
+            "access": "private",
+            "tagname": "",
+            "type": "{function}",
+            "class": "NcfTransition",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 572,
+            "description": "Return the name of the transition",
+            "itemtype": "method",
+            "name": "getName",
+            "return": {
+                "description": "name The name of the transition",
+                "type": "String"
+            },
+            "class": "NcfTransition",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 584,
+            "description": "Return the destination name of the transition",
+            "itemtype": "method",
+            "name": "getDestinationname",
+            "return": {
+                "description": "destinationname The destinationname of the transition",
+                "type": "String"
+            },
+            "class": "NcfTransition",
+            "module": "NonConForm Base"
+        },
+        {
+            "file": "src/ncf.js",
+            "line": 596,
+            "description": "Calls the function of the transition",
+            "itemtype": "method",
+            "name": "fire",
+            "class": "NcfTransition",
+            "module": "NonConForm Base"
+        }
+    ],
+    "warnings": []
+}
