@@ -1,5 +1,9 @@
 // *****************************************************************************
-// Start Ncf state engine
+// Game
 // *****************************************************************************
-Ncf.setDebugMode(true);
-Ncf.init(50,"Game");
+
+Ncf.getState("Game").setView(
+    function() {
+        Ncf.log("View");
+    }
+)

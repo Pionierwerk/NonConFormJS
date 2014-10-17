@@ -131,7 +131,7 @@ var Ncf = Class( 'Ncf',
 	* Ncf.init(50,"Game");<br/>	
 	*/
 	
-    'public static init' : function(fps,firststatename)
+    'public static init' : function(fps,firststatename,initfunction)
     {
         this.log("initialize NonConForm");
         // Mainloop Parameters
@@ -139,7 +139,7 @@ var Ncf = Class( 'Ncf',
 
         // State engine initialization
         var _stStart = new NcfState("Start");
-        var _tGoFirst = new NcfTransition("GotoFirstState",firststatename,function() {} );
+        var _tGoFirst = new NcfTransition("GotoFirstState",firststatename,function() {initfunction();} );
         _stStart.addTransition(_tGoFirst);
         this.addState(_stStart);
         
@@ -223,7 +223,6 @@ var Ncf = Class( 'Ncf',
             source.leave();
         };
         this.log("|------------------Transit to------------------|:" + destination.getName());
- 
         transition.fire();
         if ((typeof(destination.enter()) !== 'undefined') && (destination.enter() !== null))
         {
@@ -601,6 +600,7 @@ var NcfTransition = Class (
      
      'public fire' : function()
     {
+        Ncf.log("Firing transition function")
         this.funct();
     }
 } );
